@@ -23,7 +23,7 @@ $('div').slideDown('slow');
 
 //Observe in fadeOut ,slideDown --The first letter of second part is capital
 
-//While using fadin ,initially element should not be visible.This can be done by setting the disaply equal to none.
+//While using fadin ,initially the element should not be visible.This can be done by setting the disaply equal to none.
 
 You can think of the element name passed to jQuery as identical to the CSS element, only wrapped in quotes. 
 
