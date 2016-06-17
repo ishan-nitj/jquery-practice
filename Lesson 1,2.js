@@ -105,3 +105,4 @@ $('.panel').slideToggle('slow');
 )
 }    
 );
+
