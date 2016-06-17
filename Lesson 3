@@ -1,0 +1,82 @@
+Lesson 3:Modfying html elements with jquery
+
+3.1)Adding and removing html elements:
+
+=>passing entire html element in quotes:
+var $p = $("<p>I'm a new paragraph!</p>");
+
+=>append and prepend
+.append() inserts the specified element as the last child of the target element. .prepend() inserts the specified element as the first child of the target element.
+
+$(".info").append("<p>Stuff!</p>");
+$(".info").prepend("<p>Stuff!</p>");
+will add a paragraph containing the text "Stuff!" inside all divs of class .info.
+
+**Note why we cant use single quotes  in '<p> I 'm a genius </p>' This is because we now have to escape the ' in " 'm ".
+ 
+=>Before and After
+We can specify where in the DOM we insert an element with the .before() and .after() functions. The syntax looks like this:
+
+$('target').after('<tag>To add</tag>');
+Where 'target' is the element after which you want to add something and the bit between <tag>s is the HTML element you want to add. You can add <h1>s, <div>s, or any other valid HTML you like.
+
+=>Removing Elements
+.empty() deletes an element's content and all its descendants. For instance, if you .empty() an 'ol', you'll also remove all its 'li's and their text.
+
+.remove(), not only deletes an element's content, but deletes the element itself.
+
+Syntax:
+$('element to remove').remove();
+
+
+3.2)Adding and Removing Classes//We can add cool effects with it
+=>.addClass() and .removeClass(), that can be used to add or remove a class from an element.
+
+The syntax looks like this:
+
+$('selector').addClass('className');
+$('selector').removeClass('className');
+
+Note that we will not use . here with the classname in addClass or removeClass.
+
+=>toggleClass
+If the element it's called on has the class it receives as an input, .toggleClass() removes that class; if the target element doesn't have that class, .toggleClass() adds it.
+
+=>Changing values of individual CSS properties
+EX:    $("div").css("background-color","#008800");
+
+3.3)Changing html content
+=>Change the contents b/w opening and closing tags
+$(document).ready(function(){
+$('p').html('jQuery magic in action!');
+});
+
+=>val is used to get value of form elements:
+var toAdd=$('input[name=checkListItem]').val();
+
+**3.4)Building a checklist in which user can add and remove items
+
+$(document).ready(function(){
+$('#button').click(function(){
+var toAdd=$('input[name=checkListItem]').val();
+$('.list').append('<div class="item">'+toAdd+'</div>');
+$(document).on('click','.item',function(){//important
+$(this).remove();
+});
+});
+});
+
+
+Note that in the second part we could have used:
+$('.item').click(function() {
+    $(this).remove();
+});
+
+But this wont work because:
+jQuery looks for all the .items when the DOM is loaded, so by the time your document is ready, it's already decided there are no .items to .remove(), and your code won't work.
+
+For this, we'll need a new event handler: .on(). You can think of .on() as a general handler that takes the event, its selector, and an action as inputs. The syntax looks like this:
+
+$(document).on('event', 'selector', function() {
+    Do something!
+});
